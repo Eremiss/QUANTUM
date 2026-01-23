@@ -6,6 +6,46 @@ import CtaDropdown from "@/components/CtaDropdown";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useI18n } from "@/i18n/LanguageProvider";
 
+const IconGlobe = () => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    className="h-4 w-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.6"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18" />
+    <path d="M12 3a16 16 0 0 1 0 18" />
+    <path d="M12 3a16 16 0 0 0 0 18" />
+  </svg>
+);
+
+const IconTelegram = () => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    className="h-4 w-4"
+    fill="currentColor"
+  >
+    <path d="M21.8 4.2c.4-.8-.2-1.5-1.1-1.2L3.5 9.6c-1 .3-1 1.7 0 2l4.7 1.5 1.8 5.6c.3 1 1.7 1 2 .1l2.7-3.6 4.9 3.6c.8.6 1.9.1 2.1-.9l2.1-13.7zM9.1 12.5l8.5-6.1-6.6 7.6-.3 3.2-1.2-3.8-3.4-1.1z" />
+  </svg>
+);
+
+const IconX = () => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    className="h-4 w-4"
+    fill="currentColor"
+  >
+    <path d="M18.9 3H21l-6.6 7.5L22 21h-6l-4.7-6.3L5.4 21H3.2l7.1-8.1L2 3h6.1l4.3 5.7L18.9 3zm-2.1 16h1.7L7.3 5H5.5l11.3 14z" />
+  </svg>
+);
+
 const LINKS = {
   telegram: "https://t.me/spectraview_bot",
   xAllDayLaunch: "https://x.com/AllDayLaunch_io",
@@ -317,20 +357,24 @@ export default function Home() {
                 </ul>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
-                    className="btn-secondary"
+                    className="btn-secondary btn-icon"
                     href={LINKS.site}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label="AllDayLaunch site"
                   >
-                    {t("cta.openSite")}
+                    <IconGlobe />
+                    <span className="sr-only">{t("cta.openSite")}</span>
                   </a>
                   <a
-                    className="btn-secondary"
+                    className="btn-secondary btn-icon"
                     href={LINKS.xAllDayLaunch}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label="AllDayLaunch X"
                   >
-                    {t("cta.openX")}
+                    <IconX />
+                    <span className="sr-only">{t("cta.openX")}</span>
                   </a>
                 </div>
               </FadeIn>
@@ -365,28 +409,34 @@ export default function Home() {
                 </ul>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
-                    className="btn-secondary"
+                    className="btn-secondary btn-icon"
                     href={LINKS.spectraSite}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label="SpectraView site"
                   >
-                    {t("cta.openSite")}
+                    <IconGlobe />
+                    <span className="sr-only">{t("cta.openSite")}</span>
                   </a>
                   <a
-                    className="btn-secondary"
+                    className="btn-secondary btn-icon"
                     href={LINKS.telegram}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label="SpectraView Telegram"
                   >
-                    {t("cta.openTelegram")}
+                    <IconTelegram />
+                    <span className="sr-only">{t("cta.openTelegram")}</span>
                   </a>
                   <a
-                    className="btn-secondary"
+                    className="btn-secondary btn-icon"
                     href={LINKS.xSpectraView}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label="SpectraView X"
                   >
-                    {t("cta.openX")}
+                    <IconX />
+                    <span className="sr-only">{t("cta.openX")}</span>
                   </a>
                 </div>
               </FadeIn>
