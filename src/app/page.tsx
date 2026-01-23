@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import FadeIn from "@/components/FadeIn";
 import CtaDropdown from "@/components/CtaDropdown";
 import LanguageToggle from "@/components/LanguageToggle";
@@ -57,6 +58,7 @@ const LINKS = {
 
 export default function Home() {
   const { t, tArray } = useI18n();
+  const [logoReady, setLogoReady] = useState(false);
   const notOutsourcing = tArray<string>("home.notOutsourcing.points");
   const capabilities = tArray<string>("home.capabilities.list");
   const segments = tArray<{ title: string; description: string }>(
@@ -78,33 +80,24 @@ export default function Home() {
   return (
     <div id="top" className="relative overflow-hidden">
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--line)] bg-black">
-        <div className="logo-sweep" aria-hidden="true">
-          <div className="logo-sweep-motion">
-            <Image
-              className="logo-sweep-img"
-              src="/q-logo.png"
-              alt=""
-              width={64}
-              height={64}
-            />
-          </div>
-        </div>
+        <button
+          type="button"
+          className="logo-sweep-motion logo-sweep-button"
+          onClick={() => window.location.reload()}
+          aria-label="Обновить сайт"
+          disabled={!logoReady}
+          onAnimationEnd={() => setLogoReady(true)}
+        >
+          <Image
+            className="logo-sweep-img"
+            src="/q-logo.png"
+            alt=""
+            width={64}
+            height={64}
+          />
+        </button>
         <div className="container-main relative z-10 py-4">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
-            <button
-              type="button"
-              className="logo-button"
-              onClick={() => window.location.reload()}
-              aria-label="Обновить сайт"
-            >
-              <Image
-                className="logo-mark"
-                src="/q-logo.png"
-                alt=""
-                width={32}
-                height={32}
-              />
-            </button>
             <CtaDropdown
               variant="header"
               telegram={LINKS.telegram}

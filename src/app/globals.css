@@ -206,17 +206,6 @@ a {
     @apply inline-flex items-center justify-center rounded-full border border-transparent px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-[var(--muted)] transition;
   }
 
-  .logo-button {
-    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-black/40 transition;
-    box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.02),
-      0 6px 16px rgba(0, 0, 0, 0.35);
-  }
-
-  .logo-button:hover {
-    border-color: rgba(110, 231, 255, 0.45);
-  }
-
   .chip {
     @apply inline-flex items-center rounded-full border border-[var(--line)] px-3 py-1 text-xs uppercase tracking-[0.22em] text-[var(--muted)];
     background: rgba(110, 231, 255, 0.06);
@@ -1108,15 +1097,21 @@ a {
     drop-shadow(0 10px 24px rgba(110, 231, 255, 0.16));
 }
 
-.logo-sweep {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
+.logo-sweep-button {
   --sweep-size: clamp(58px, 5vw, 72px);
   --sweep-inset: clamp(44px, 6vw, 80px);
   --sweep-inset-2: clamp(56px, 7vw, 96px);
   --trail-length: clamp(220px, 28vw, 420px);
+  z-index: 20;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.logo-sweep-button:disabled {
+  cursor: default;
+  pointer-events: none;
 }
 
 .logo-sweep-motion {
@@ -1137,6 +1132,7 @@ a {
   width: var(--trail-length);
   height: 3px;
   transform: translateY(-50%);
+  pointer-events: none;
   background: linear-gradient(
     90deg,
     rgba(110, 231, 255, 0),
