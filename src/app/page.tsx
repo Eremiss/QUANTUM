@@ -11,6 +11,7 @@ const LINKS = {
   xAllDayLaunch: "https://x.com/AllDayLaunch_io",
   xSpectraView: "https://x.com/spectraview_io",
   site: "https://alldaylaunch.io/",
+  spectraSite: "https://www.spectraview.io/",
   email: "hello@designquant.io",
 };
 
@@ -314,7 +315,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8">
+                <div className="mt-8 flex flex-wrap gap-3">
                   <a
                     className="btn-secondary"
                     href={LINKS.site}
@@ -322,6 +323,14 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     {t("cta.openSite")}
+                  </a>
+                  <a
+                    className="btn-secondary"
+                    href={LINKS.xAllDayLaunch}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("cta.openX")}
                   </a>
                 </div>
               </FadeIn>
@@ -355,6 +364,14 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    className="btn-secondary"
+                    href={LINKS.spectraSite}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("cta.openSite")}
+                  </a>
                   <a
                     className="btn-secondary"
                     href={LINKS.telegram}
