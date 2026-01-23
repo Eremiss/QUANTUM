@@ -91,6 +91,20 @@ export default function Home() {
         </div>
         <div className="container-main relative z-10 py-4">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <button
+              type="button"
+              className="logo-button"
+              onClick={() => window.location.reload()}
+              aria-label="Обновить сайт"
+            >
+              <Image
+                className="logo-mark"
+                src="/q-logo.png"
+                alt=""
+                width={32}
+                height={32}
+              />
+            </button>
             <CtaDropdown
               variant="header"
               telegram={LINKS.telegram}
