@@ -1446,6 +1446,18 @@ details[open] .cta-caret {
     box-shadow 0.2s ease;
 }
 
+.product-card-header {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .product-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .product-card::before {
   content: "";
   position: absolute;

@@ -340,7 +340,7 @@ export default function Home() {
             </FadeIn>
             <div className="mt-10 grid gap-8 lg:grid-cols-2">
               <FadeIn className="surface product-card product-card--adl p-7">
-                <div className="flex items-center justify-between">
+                <div className="product-card-header flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Image
                       className="product-logo"
@@ -392,7 +392,7 @@ export default function Home() {
                 delay={0.1}
                 className="surface product-card product-card--spectra p-7"
               >
-                <div className="flex items-center justify-between">
+                <div className="product-card-header flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Image
                       className="product-logo"
