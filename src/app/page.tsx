@@ -396,7 +396,7 @@ export default function Home() {
                   <div className="flex items-center gap-3">
                     <Image
                       className="product-logo"
-                      src="/product-al.png"
+                      src="/product-spectra.png"
                       alt="SpectraView"
                       width={64}
                       height={64}
