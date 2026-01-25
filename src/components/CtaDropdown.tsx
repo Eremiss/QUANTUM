@@ -18,6 +18,7 @@ export default function CtaDropdown({
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const isFab = variant === "fab";
   const { t } = useI18n();
+  const telegramHandle = telegram.replace(/^https?:\/\/t\.me\//, "@");
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -126,6 +127,10 @@ export default function CtaDropdown({
               <line x1="22" y1="2" x2="11" y2="13" />
               <polygon points="22 2 15 22 11 13 2 9 22 2" />
             </svg>
+            <span className="cta-panel-text">
+              <span className="cta-panel-label">{t("cta.telegramLabel")}</span>
+              <span className="cta-panel-value">{telegramHandle}</span>
+            </span>
           </a>
           <a
             className="cta-panel-link"
@@ -141,6 +146,10 @@ export default function CtaDropdown({
               <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
               <path d="m22 8-10 6L2 8" />
             </svg>
+            <span className="cta-panel-text">
+              <span className="cta-panel-label">{t("cta.emailLabel")}</span>
+              <span className="cta-panel-value">{email}</span>
+            </span>
           </a>
         </div>
       </div>

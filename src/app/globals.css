@@ -1332,6 +1332,24 @@ details[open] .cta-caret {
   justify-content: flex-start;
 }
 
+.cta-panel-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cta-panel-label {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(11, 15, 22, 0.5);
+}
+
+.cta-panel-value {
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .cta-panel-icon {
   width: 16px;
   height: 16px;
