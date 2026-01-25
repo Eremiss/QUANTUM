@@ -49,9 +49,11 @@ const IconX = () => (
 
 const LINKS = {
   telegram: "https://t.me/quantumhft1",
+  xQuantum: "https://x.com/quantumhtf1",
   xAllDayLaunch: "https://x.com/AllDayLaunch_io",
   xSpectraView: "https://x.com/spectraview_io",
-  site: "https://alldaylaunch.io/",
+  site: "https://quantum-hft.com/",
+  alldaySite: "https://alldaylaunch.io/",
   spectraSite: "https://www.spectraview.io/",
   email: "quantumhft1@gmail.com",
 };
@@ -365,7 +367,7 @@ export default function Home() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
                     className="btn-secondary btn-icon"
-                    href={LINKS.site}
+                    href={LINKS.alldaySite}
                     target="_blank"
                     rel="noreferrer"
                     aria-label="AllDayLaunch site"
@@ -375,11 +377,11 @@ export default function Home() {
                   </a>
                   <a
                     className="btn-secondary btn-icon"
-                    href={LINKS.xAllDayLaunch}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="AllDayLaunch X"
-                  >
+                href={LINKS.xAllDayLaunch}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="AllDayLaunch X"
+              >
                     <IconX />
                     <span className="sr-only">{t("cta.openX")}</span>
                   </a>
@@ -437,11 +439,11 @@ export default function Home() {
                   </a>
                   <a
                     className="btn-secondary btn-icon"
-                    href={LINKS.xSpectraView}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="SpectraView X"
-                  >
+                href={LINKS.xSpectraView}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="SpectraView X"
+              >
                     <IconX />
                     <span className="sr-only">{t("cta.openX")}</span>
                   </a>
@@ -526,7 +528,6 @@ export default function Home() {
       <footer className="border-t border-[var(--line)]">
         <div className="container-main py-10 text-sm text-[var(--muted)]">
           <div className="flex flex-col gap-3">
-            <span>{t("home.footer.tagline")}</span>
             <a
               className="link-underline"
               href={LINKS.telegram}
@@ -535,24 +536,17 @@ export default function Home() {
             >
               {t("home.footer.telegram")}
             </a>
-            <div className="flex flex-wrap gap-4">
-              <a
-                className="link-underline"
-                href={LINKS.xAllDayLaunch}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t("home.footer.xAllDayLaunch")}
-              </a>
-              <a
-                className="link-underline"
-                href={LINKS.xSpectraView}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t("home.footer.xSpectraView")}
-              </a>
-            </div>
+            <a className="link-underline" href={`mailto:${LINKS.email}`}>
+              {t("home.footer.email")}
+            </a>
+            <a
+              className="link-underline"
+              href={LINKS.xQuantum}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t("home.footer.x")}
+            </a>
             <a
               className="link-underline"
               href={LINKS.site}
@@ -561,7 +555,6 @@ export default function Home() {
             >
               {t("home.footer.site")}
             </a>
-            <span>{t("home.footer.copyright")}</span>
           </div>
         </div>
       </footer>

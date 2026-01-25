@@ -286,12 +286,10 @@ export const strings = {
           "Если у вас есть продукт или инфраструктурная задача, где важны скорость, масштаб и качество решений — давайте обсудим архитектуру.",
       },
       footer: {
-        tagline: "Q — engineering lab for Web3 & AI",
-        telegram: "Telegram: @spectraview_bot",
-        xAllDayLaunch: "X: @AllDayLaunch_io",
-        xSpectraView: "X: @spectraview_io",
-        site: "Site: alldaylaunch.io",
-        copyright: "© Q",
+        telegram: "Telegram: @quantumhft1",
+        email: "Email: quantumhft1@gmail.com",
+        x: "X: @quantumhtf1",
+        site: "Site: quantum-hft.com",
       },
     },
     meta: {
@@ -582,12 +580,10 @@ export const strings = {
           "If you have a product or infrastructure challenge where speed, scale, and quality matter — let’s discuss the architecture.",
       },
       footer: {
-        tagline: "Q — engineering lab for Web3 & AI",
-        telegram: "Telegram: @spectraview_bot",
-        xAllDayLaunch: "X: @AllDayLaunch_io",
-        xSpectraView: "X: @spectraview_io",
-        site: "Site: alldaylaunch.io",
-        copyright: "© Q",
+        telegram: "Telegram: @quantumhft1",
+        email: "Email: quantumhft1@gmail.com",
+        x: "X: @quantumhtf1",
+        site: "Site: quantum-hft.com",
       },
     },
     meta: {

@@ -21,9 +21,10 @@ type DocsCard = {
 
 const LINKS = {
   telegram: "https://t.me/quantumhft1",
-  xAllDayLaunch: "https://x.com/AllDayLaunch_io",
-  xSpectraView: "https://x.com/spectraview_io",
-  site: "https://alldaylaunch.io/",
+  x: "https://x.com/quantumhtf1",
+  site: "https://quantum-hft.com/",
+  alldaySite: "https://alldaylaunch.io/",
+  spectraSite: "https://www.spectraview.io/",
   email: "quantumhft1@gmail.com",
 };
 
@@ -78,8 +79,8 @@ export default function DocsPage() {
   }, [navQuery, sectionNav]);
 
   const caseLinks: Record<string, string> = {
-    AllDayLaunch: LINKS.site,
-    SpectraView: LINKS.xSpectraView,
+    AllDayLaunch: LINKS.alldaySite,
+    SpectraView: LINKS.spectraSite,
   };
 
   return (
@@ -274,8 +275,8 @@ export default function DocsPage() {
 
       <SiteFooter
         telegram={LINKS.telegram}
-        xAllDayLaunch={LINKS.xAllDayLaunch}
-        xSpectraView={LINKS.xSpectraView}
+        email={LINKS.email}
+        x={LINKS.x}
         site={LINKS.site}
       />
     </div>

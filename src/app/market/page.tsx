@@ -9,9 +9,8 @@ import { useI18n } from "@/i18n/LanguageProvider";
 
 const LINKS = {
   telegram: "https://t.me/quantumhft1",
-  xAllDayLaunch: "https://x.com/AllDayLaunch_io",
-  xSpectraView: "https://x.com/spectraview_io",
-  site: "https://alldaylaunch.io/",
+  x: "https://x.com/quantumhtf1",
+  site: "https://quantum-hft.com/",
   email: "quantumhft1@gmail.com",
 };
 
@@ -64,8 +63,8 @@ export default function MarketPage() {
 
       <SiteFooter
         telegram={LINKS.telegram}
-        xAllDayLaunch={LINKS.xAllDayLaunch}
-        xSpectraView={LINKS.xSpectraView}
+        email={LINKS.email}
+        x={LINKS.x}
         site={LINKS.site}
       />
     </div>
