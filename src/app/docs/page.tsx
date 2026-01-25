@@ -20,7 +20,7 @@ type DocsCard = {
 };
 
 const LINKS = {
-  telegram: "https://t.me/spectraview_bot",
+  telegram: "https://t.me/quantumhft1",
   xAllDayLaunch: "https://x.com/AllDayLaunch_io",
   xSpectraView: "https://x.com/spectraview_io",
   site: "https://alldaylaunch.io/",
