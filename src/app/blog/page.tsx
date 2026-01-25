@@ -13,7 +13,7 @@ const LINKS = {
   xAllDayLaunch: "https://x.com/AllDayLaunch_io",
   xSpectraView: "https://x.com/spectraview_io",
   site: "https://alldaylaunch.io/",
-  email: "hello@designquant.io",
+  email: "quantumhft1@gmail.com",
 };
 
 const NAV_ITEMS = [

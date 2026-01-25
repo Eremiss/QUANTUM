@@ -53,7 +53,7 @@ const LINKS = {
   xSpectraView: "https://x.com/spectraview_io",
   site: "https://alldaylaunch.io/",
   spectraSite: "https://www.spectraview.io/",
-  email: "hello@designquant.io",
+  email: "quantumhft1@gmail.com",
 };
 
 export default function Home() {
