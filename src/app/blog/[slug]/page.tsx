@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import CtaDropdown from "@/components/CtaDropdown";
@@ -12,6 +11,7 @@ import {
   posts,
   postsBySlug,
 } from "@/content/posts";
+import type { Language } from "@/i18n/strings";
 
 const LINKS = {
   telegram: "https://t.me/spectraview_bot",
@@ -29,29 +29,8 @@ const NAV_ITEMS = [
   { label: "Docs", href: "/docs" },
 ];
 
-const resolveLang = async () => {
-  const cookieStore = await cookies();
-  const value = cookieStore.get("q-lang")?.value;
-  return value === "en" ? "en" : "ru";
-};
-
-const getInitials = (name: string) =>
-  name
-    .split(" ")
-    .filter(Boolean)
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const lang = await resolveLang();
-  const post = postsBySlug[params.slug];
-  const navItems = NAV_ITEMS.map((item) => ({
+const getNavItems = (lang: "en" | "ru") =>
+  NAV_ITEMS.map((item) => ({
     ...item,
     label:
       item.href === "/"
@@ -70,6 +49,25 @@ export async function generateMetadata({
                 ? "Docs"
                 : "Доксы",
   }));
+
+const resolveLang = async (): Promise<Language> => "ru";
+
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const lang = await resolveLang();
+  const post = postsBySlug[params.slug];
 
   if (!post) {
     return {
@@ -94,6 +92,7 @@ export default async function BlogPostPage({
 }) {
   const lang = await resolveLang();
   const post = postsBySlug[params.slug];
+  const navItems = getNavItems(lang);
 
   if (!post) {
     notFound();

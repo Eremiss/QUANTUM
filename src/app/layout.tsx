@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
-import { cookies } from "next/headers";
 import { strings } from "@/i18n/strings";
 
 const manrope = Manrope({
@@ -20,8 +19,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const lang = cookieStore.get("q-lang")?.value === "en" ? "en" : "ru";
+  const lang = "ru";
   return {
     title: strings[lang].meta.title,
     description: strings[lang].meta.description,
