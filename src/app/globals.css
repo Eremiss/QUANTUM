@@ -923,6 +923,14 @@ a {
     @apply text-xs uppercase tracking-[0.22em] text-[var(--muted)];
   }
 
+  .search-highlight {
+    border-radius: 4px;
+    padding: 0 2px;
+    background: rgba(110, 231, 255, 0.22);
+    box-shadow: 0 0 0 1px rgba(110, 231, 255, 0.35);
+    color: inherit;
+  }
+
   .blog-card-title {
     @apply text-xl font-semibold text-[var(--fg)];
   }

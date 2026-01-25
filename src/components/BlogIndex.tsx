@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import {
   CATEGORY_LABELS,
   getAuthorById,
@@ -25,6 +25,7 @@ const getInitials = (name: string) =>
 export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
   const { t, lang } = useI18n();
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<"all" | Category>(
     initialCategory,
   );
@@ -50,8 +51,41 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
     [lang],
   );
 
+  useEffect(() => {
+    const handle = window.setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 200);
+    return () => window.clearTimeout(handle);
+  }, [query]);
+
+  const normalizedQuery = debouncedQuery.trim().toLowerCase();
+
+  const highlightText = (text: string): ReactNode => {
+    if (!normalizedQuery) {
+      return text;
+    }
+    const escaped = normalizedQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(escaped, "ig");
+    const matches = text.match(regex);
+    if (!matches) {
+      return text;
+    }
+    const parts = text.split(regex);
+    return parts.flatMap((part, index) => {
+      const chunk: ReactNode[] = [part];
+      const match = matches[index];
+      if (match) {
+        chunk.push(
+          <mark key={`${index}-${match}`} className="search-highlight">
+            {match}
+          </mark>,
+        );
+      }
+      return chunk;
+    });
+  };
+
   const filteredPosts = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
 
     return localizedPosts.filter((post) => {
       const matchesCategory =
@@ -61,7 +95,7 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
         return false;
       }
 
-      if (!normalized) {
+      if (!normalizedQuery) {
         return true;
       }
 
@@ -69,13 +103,15 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
         post.title,
         post.excerpt,
         post.tags.join(" "),
+        post.body.join(" "),
+        post.bullets.join(" "),
       ]
         .join(" ")
         .toLowerCase();
 
-      return haystack.includes(normalized);
+      return haystack.includes(normalizedQuery);
     });
-  }, [activeCategory, query, localizedPosts]);
+  }, [activeCategory, localizedPosts, normalizedQuery]);
 
   useEffect(() => {
     if (filteredPosts.length === 0) {
@@ -91,7 +127,7 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
       setFeaturedSlug(filteredPosts[0].slug);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeCategory, query, featuredSlug]);
+  }, [activeCategory, normalizedQuery, featuredSlug]);
 
   const featuredPost =
     filteredPosts.find((post) => post.slug === featuredSlug) ??
@@ -186,9 +222,11 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
                   <span className="blog-meta">{featuredPost.date}</span>
                   <span className="blog-meta">{featuredPost.readTime}</span>
                 </div>
-                <h3 className="blog-featured-title">{featuredPost.title}</h3>
+                <h3 className="blog-featured-title">
+                  {highlightText(featuredPost.title)}
+                </h3>
                 <p className="blog-featured-excerpt">
-                  {featuredPost.excerpt}
+                  {highlightText(featuredPost.excerpt)}
                 </p>
                 <div className="blog-tags">
                   {featuredPost.tags.slice(0, 3).map((tag) => (
@@ -199,14 +237,14 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
                 </div>
                 <div className="blog-featured-body article-body">
                   {featuredPost.body.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <p key={paragraph}>{highlightText(paragraph)}</p>
                   ))}
                   <h3>{t("blog.keyTakeaways")}</h3>
                   <ul>
                     {featuredPost.bullets.map((bullet) => (
                       <li key={bullet}>
                         <span className="article-dot" aria-hidden="true" />
-                        <span>{bullet}</span>
+                        <span>{highlightText(bullet)}</span>
                       </li>
                     ))}
                   </ul>
@@ -275,8 +313,12 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
                     {t("blog.pin")}
                   </button>
                 </div>
-                <h4 className="blog-mini-title">{post.title}</h4>
-                <p className="blog-mini-excerpt">{post.excerpt}</p>
+                <h4 className="blog-mini-title">
+                  {highlightText(post.title)}
+                </h4>
+                <p className="blog-mini-excerpt">
+                  {highlightText(post.excerpt)}
+                </p>
               </div>
             );
             })}
