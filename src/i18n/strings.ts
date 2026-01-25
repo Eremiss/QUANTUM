@@ -7,7 +7,7 @@ export const strings = {
       blog: "Блог",
       market: "Market",
       tech: "Tech",
-      docs: "Доксы",
+      docs: "Документация",
       capabilities: "Возможности",
       products: "Продукты",
       process: "Процесс",

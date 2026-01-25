@@ -47,7 +47,7 @@ const getNavItems = (lang: "en" | "ru") =>
               ? "Tech"
               : lang === "en"
                 ? "Docs"
-                : "Доксы",
+                : "Документация",
   }));
 
 const resolveLang = async (): Promise<Language> => "ru";
