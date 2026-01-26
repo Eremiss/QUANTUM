@@ -787,6 +787,10 @@ a {
     background: rgba(110, 231, 255, 0.06);
   }
 
+  .blog-mini-column {
+    @apply flex flex-col gap-4;
+  }
+
   .blog-mini-list {
     @apply flex flex-col gap-4;
   }

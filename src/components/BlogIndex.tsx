@@ -154,6 +154,50 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
     setFeaturedSlug(slug);
   };
 
+  const renderMiniPagination = () => {
+    if (totalMiniPages <= 1) {
+      return null;
+    }
+    return (
+      <div className="blog-pagination" role="navigation">
+        <button
+          type="button"
+          className="blog-page-button"
+          onClick={() => setMiniPage((page) => Math.max(1, page - 1))}
+          disabled={miniPage === 1}
+          aria-label={lang === "en" ? "Previous page" : "Предыдущая страница"}
+        >
+          ←
+        </button>
+        {Array.from({ length: totalMiniPages }, (_, index) => {
+          const page = index + 1;
+          return (
+            <button
+              key={page}
+              type="button"
+              className={`blog-page-button${page === miniPage ? " is-active" : ""}`}
+              onClick={() => setMiniPage(page)}
+              aria-current={page === miniPage ? "page" : undefined}
+            >
+              {page}
+            </button>
+          );
+        })}
+        <button
+          type="button"
+          className="blog-page-button"
+          onClick={() =>
+            setMiniPage((page) => Math.min(totalMiniPages, page + 1))
+          }
+          disabled={miniPage === totalMiniPages}
+          aria-label={lang === "en" ? "Next page" : "Следующая страница"}
+        >
+          →
+        </button>
+      </div>
+    );
+  };
+
   useEffect(() => {
     if (miniPage > totalMiniPages) {
       setMiniPage(totalMiniPages);
@@ -281,106 +325,72 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
             );
           })()}
 
-          <div className="blog-mini-list">
-            {pagedMiniPosts.map((post) => {
-              const miniVisualStyle: CSSProperties | undefined = post.image
-                ? {
-                    ["--blog-visual-image" as string]: `url(${post.image})`,
-                    ["--blog-visual-grid-opacity" as string]: 0,
-                    ...(post.slug === "borba-za-skorost-v-solana"
-                      ? {
-                          ["--blog-visual-size" as string]: "93.5%",
-                          ["--blog-visual-position" as string]: "50% 50%",
-                        }
-                      : post.slug === "solana-kak-yavlenie"
+          <div className="blog-mini-column">
+            {renderMiniPagination()}
+            <div className="blog-mini-list">
+              {pagedMiniPosts.map((post) => {
+                const miniVisualStyle: CSSProperties | undefined = post.image
+                  ? {
+                      ["--blog-visual-image" as string]: `url(${post.image})`,
+                      ["--blog-visual-grid-opacity" as string]: 0,
+                      ...(post.slug === "borba-za-skorost-v-solana"
                         ? {
-                            ["--blog-visual-size" as string]: "120%",
+                            ["--blog-visual-size" as string]: "93.5%",
                             ["--blog-visual-position" as string]: "50% 50%",
                           }
-                      : {}),
-                  }
-                : undefined;
+                        : post.slug === "solana-kak-yavlenie"
+                          ? {
+                              ["--blog-visual-size" as string]: "120%",
+                              ["--blog-visual-position" as string]: "50% 50%",
+                            }
+                        : {}),
+                    }
+                  : undefined;
 
-              return (
-              <div
-                key={post.slug}
-                className="blog-mini-card"
-                data-category={post.category}
-                onClick={() => openPost(post.slug)}
-              >
-                <div
-                  className={`blog-visual blog-visual--mini${
-                    post.image ? " blog-visual--has-image" : ""
-                  }`}
-                  aria-hidden="true"
-                  style={miniVisualStyle}
-                />
-                <div className="blog-mini-header">
-                  <div className="blog-mini-meta">
-                    <span className="blog-meta">
-                      {CATEGORY_LABELS[post.category]}
-                    </span>
-                    <span className="blog-meta">{post.date}</span>
-                  </div>
-                  <button
-                    className="pin-button"
-                    type="button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setFeaturedSlug(post.slug);
-                    }}
-                  >
-                    {t("blog.pin")}
-                  </button>
-                </div>
-                <h4 className="blog-mini-title">
-                  {highlightText(post.title)}
-                </h4>
-                <p className="blog-mini-excerpt">
-                  {highlightText(post.excerpt)}
-                </p>
-              </div>
-            );
-            })}
-          </div>
-          {totalMiniPages > 1 ? (
-            <div className="blog-pagination" role="navigation">
-              <button
-                type="button"
-                className="blog-page-button"
-                onClick={() => setMiniPage((page) => Math.max(1, page - 1))}
-                disabled={miniPage === 1}
-                aria-label={lang === "en" ? "Previous page" : "Предыдущая страница"}
-              >
-                ←
-              </button>
-              {Array.from({ length: totalMiniPages }, (_, index) => {
-                const page = index + 1;
                 return (
-                  <button
-                    key={page}
-                    type="button"
-                    className={`blog-page-button${page === miniPage ? " is-active" : ""}`}
-                    onClick={() => setMiniPage(page)}
-                    aria-current={page === miniPage ? "page" : undefined}
+                  <div
+                    key={post.slug}
+                    className="blog-mini-card"
+                    data-category={post.category}
+                    onClick={() => openPost(post.slug)}
                   >
-                    {page}
-                  </button>
+                    <div
+                      className={`blog-visual blog-visual--mini${
+                        post.image ? " blog-visual--has-image" : ""
+                      }`}
+                      aria-hidden="true"
+                      style={miniVisualStyle}
+                    />
+                    <div className="blog-mini-header">
+                      <div className="blog-mini-meta">
+                        <span className="blog-meta">
+                          {CATEGORY_LABELS[post.category]}
+                        </span>
+                        <span className="blog-meta">{post.date}</span>
+                      </div>
+                      <button
+                        className="pin-button"
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setFeaturedSlug(post.slug);
+                        }}
+                      >
+                        {t("blog.pin")}
+                      </button>
+                    </div>
+                    <h4 className="blog-mini-title">
+                      {highlightText(post.title)}
+                    </h4>
+                    <p className="blog-mini-excerpt">
+                      {highlightText(post.excerpt)}
+                    </p>
+                  </div>
                 );
               })}
-              <button
-                type="button"
-                className="blog-page-button"
-                onClick={() =>
-                  setMiniPage((page) => Math.min(totalMiniPages, page + 1))
-                }
-                disabled={miniPage === totalMiniPages}
-                aria-label={lang === "en" ? "Next page" : "Следующая страница"}
-              >
-                →
-              </button>
             </div>
-          ) : null}
+            {renderMiniPagination()}
+          </div>
         </div>
       ) : (
         <p className="mt-6 text-sm text-[var(--muted)]">
