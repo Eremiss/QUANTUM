@@ -687,6 +687,7 @@ export const posts: Post[] = [
   },
   {
     slug: "order-books-na-onchain",
+    image: "/blog/order-books-na-onchain.jpg",
     title: "On-chain order books: когда блокчейн становится биржей",
     titleEn: "On-chain order books: when the blockchain becomes an exchange",
     excerpt:
@@ -749,6 +750,7 @@ export const posts: Post[] = [
   },
   {
     slug: "web3-ux-sravnivaetsya-s-web2",
+    image: "/blog/web3-ux-sravnivaetsya-s-web2.jpg",
     title: "Почему UX в Web3 наконец начинает догонять Web2",
     titleEn: "Why Web3 UX is finally catching up to Web2",
     excerpt:
