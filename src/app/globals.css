@@ -791,6 +791,31 @@ a {
     @apply flex flex-col gap-4;
   }
 
+  .blog-pagination {
+    @apply mt-4 flex flex-wrap items-center gap-2;
+  }
+
+  .blog-page-button {
+    @apply rounded-full border border-[var(--line)] px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--muted)] transition;
+    background: rgba(110, 231, 255, 0.06);
+  }
+
+  .blog-page-button:hover {
+    border-color: rgba(110, 231, 255, 0.45);
+    color: var(--fg);
+  }
+
+  .blog-page-button.is-active {
+    border-color: rgba(110, 231, 255, 0.6);
+    background: rgba(110, 231, 255, 0.16);
+    color: var(--fg);
+  }
+
+  .blog-page-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
   .blog-mini-card {
     @apply rounded-2xl border border-[var(--line)] bg-[rgba(8,10,14,0.68)] p-4 transition;
     cursor: pointer;

@@ -24,12 +24,14 @@ const getInitials = (name: string) =>
 
 export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
   const { t, lang } = useI18n();
+  const miniPageSize = 6;
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<"all" | Category>(
     initialCategory,
   );
   const [featuredSlug, setFeaturedSlug] = useState<string | null>(null);
+  const [miniPage, setMiniPage] = useState(1);
 
   const filters: Array<{ key: "all" | Category; label: string }> = [
     { key: "all", label: t("blog.filters.all") },
@@ -59,6 +61,10 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
   }, [query]);
 
   const normalizedQuery = debouncedQuery.trim().toLowerCase();
+
+  useEffect(() => {
+    setMiniPage(1);
+  }, [activeCategory, normalizedQuery]);
 
   const highlightText = (text: string): ReactNode => {
     if (!normalizedQuery) {
@@ -135,10 +141,24 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
   const listPosts = featuredPost
     ? filteredPosts.filter((post) => post.slug !== featuredPost.slug)
     : [];
+  const totalMiniPages = Math.max(
+    1,
+    Math.ceil(listPosts.length / miniPageSize),
+  );
+  const pagedMiniPosts = listPosts.slice(
+    (miniPage - 1) * miniPageSize,
+    miniPage * miniPageSize,
+  );
 
   const openPost = (slug: string) => {
     setFeaturedSlug(slug);
   };
+
+  useEffect(() => {
+    if (miniPage > totalMiniPages) {
+      setMiniPage(totalMiniPages);
+    }
+  }, [miniPage, totalMiniPages]);
 
   return (
     <div>
@@ -262,7 +282,7 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
           })()}
 
           <div className="blog-mini-list">
-            {listPosts.map((post) => {
+            {pagedMiniPosts.map((post) => {
               const miniVisualStyle: CSSProperties | undefined = post.image
                 ? {
                     ["--blog-visual-image" as string]: `url(${post.image})`,
@@ -323,6 +343,44 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
             );
             })}
           </div>
+          {totalMiniPages > 1 ? (
+            <div className="blog-pagination" role="navigation">
+              <button
+                type="button"
+                className="blog-page-button"
+                onClick={() => setMiniPage((page) => Math.max(1, page - 1))}
+                disabled={miniPage === 1}
+                aria-label={lang === "en" ? "Previous page" : "Предыдущая страница"}
+              >
+                ←
+              </button>
+              {Array.from({ length: totalMiniPages }, (_, index) => {
+                const page = index + 1;
+                return (
+                  <button
+                    key={page}
+                    type="button"
+                    className={`blog-page-button${page === miniPage ? " is-active" : ""}`}
+                    onClick={() => setMiniPage(page)}
+                    aria-current={page === miniPage ? "page" : undefined}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+              <button
+                type="button"
+                className="blog-page-button"
+                onClick={() =>
+                  setMiniPage((page) => Math.min(totalMiniPages, page + 1))
+                }
+                disabled={miniPage === totalMiniPages}
+                aria-label={lang === "en" ? "Next page" : "Следующая страница"}
+              >
+                →
+              </button>
+            </div>
+          ) : null}
         </div>
       ) : (
         <p className="mt-6 text-sm text-[var(--muted)]">
