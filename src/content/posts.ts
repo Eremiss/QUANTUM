@@ -625,6 +625,7 @@ export const posts: Post[] = [
   },
   {
     slug: "copytrading-kak-ryinok-v-realnom-vremeni",
+    image: "/blog/copytrading-kak-ryinok-v-realnom-vremeni.jpg",
     title: "Копитрейдинг как рынок в реальном времени: почему все упирается в инфраструктуру",
     titleEn: "Copy trading as a real-time market: why everything depends on infrastructure",
     excerpt:
