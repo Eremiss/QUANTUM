@@ -23,7 +23,7 @@ const LINKS = {
   telegram: "https://t.me/quantumhft1",
   x: "https://x.com/quantumhtf1",
   site: "https://quantum-hft.com/",
-  alldaySite: "https://alldaylaunch.io/",
+  alldaySite: "https://alldaylaunch.io/login",
   spectraSite: "https://www.spectraview.io/",
   email: "quantumhft1@gmail.com",
 };

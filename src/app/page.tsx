@@ -53,7 +53,7 @@ const LINKS = {
   xAllDayLaunch: "https://x.com/AllDayLaunch_io",
   xSpectraView: "https://x.com/spectraview_io",
   site: "https://quantum-hft.com/",
-  alldaySite: "https://alldaylaunch.io/",
+  alldaySite: "https://alldaylaunch.io/login",
   spectraSite: "https://www.spectraview.io/",
   email: "quantumhft1@gmail.com",
 };
