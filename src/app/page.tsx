@@ -55,6 +55,7 @@ const LINKS = {
   site: "https://quantum-hft.com/",
   alldaySite: "https://alldaylaunch.io/login",
   spectraSite: "https://www.spectraview.io/",
+  spectraTelegram: "https://t.me/spectraview_bot?start=BIBYYPRIU3BV",
   email: "quantumhft1@gmail.com",
 };
 
@@ -429,7 +430,7 @@ export default function Home() {
                   </a>
                   <a
                     className="btn-secondary btn-icon"
-                    href={LINKS.telegram}
+                    href={LINKS.spectraTelegram}
                     target="_blank"
                     rel="noreferrer"
                     aria-label="SpectraView Telegram"
