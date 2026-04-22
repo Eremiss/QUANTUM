@@ -190,6 +190,66 @@ export const strings = {
           "AI-enabled execution flows",
         ],
       },
+      execution: {
+        eyebrow: "Selected execution systems",
+        title:
+          "Спроектировано для скорости запуска, читаемого сигнала и production-надежности.",
+        subtitle:
+          "Execution-системы должны одновременно держать быстрый путь, ясное состояние для оператора и предсказуемое поведение под нагрузкой.",
+        status: "Execution surface",
+        meta: "Rust · Solana · AI · Order flow · Infra",
+        profileTitle: "Рабочий профиль",
+        profileItems: [
+          "Low-latency инфраструктура для launch-critical путей",
+          "Web3-продукты и execution-сценарии с читаемыми состояниями",
+          "AI-enabled flows без потери операторского контроля",
+        ],
+        profileMetrics: [
+          { label: "Путь", value: "Быстрый" },
+          { label: "Состояние", value: "Читаемое" },
+          { label: "Сбой", value: "Предсказуемый" },
+        ],
+        stageKicker: "Q / execution",
+        stageTitle: "Скорость не должна ломать читаемость.",
+        stageCopy:
+          "Мы проектируем execution-layer как рабочую поверхность: сигнал, risk-gates, route logic и интерфейс оператора остаются собраны в один контур.",
+        stagePoints: [
+          {
+            label: "Signal ingress",
+            value: "Потоки рынка собираются без шумового перегруза.",
+          },
+          {
+            label: "Risk gates",
+            value: "Решения проходят через явные проверки и приоритеты.",
+          },
+          {
+            label: "Route logic",
+            value: "Критический путь остается коротким и наблюдаемым.",
+          },
+          {
+            label: "Operator state",
+            value: "Интерфейс показывает, что происходит сейчас и что делать дальше.",
+          },
+        ],
+        flow: [
+          { label: "Ingress", value: "Market data" },
+          { label: "Risk", value: "Checks" },
+          { label: "Route", value: "Execution" },
+          { label: "Surface", value: "Readable state" },
+        ],
+        focusTitle: "Текущий фокус",
+        focusItems: [
+          "Рыночные flow с учетом latency",
+          "Prediction systems с компактным UX",
+          "Инфраструктура с предсказуемой деградацией",
+        ],
+        preserveTitle: "Что система должна сохранять",
+        preserveItems: [
+          "Скорость без потери контроля",
+          "Ясные состояния для продукта и команды",
+          "Надежность в launch и peak-моментах",
+        ],
+      },
       notOutsourcing: {
         eyebrow: "Not outsourcing",
         title: "Мы не аутсорс. Мы — инженерные партнеры",
@@ -234,7 +294,7 @@ export const strings = {
         eyebrow: "Selected work",
         title: "Продукты, форматы и сигналы доверия",
         subtitle:
-          "Показываем не абстрактные услуги, а реальные рабочие контуры: собственные продукты, форматы взаимодействия и инженерные принципы, по которым нас выбирают.",
+          "Показываем не абстрактные услуги, а рабочие контуры: собственные продукты, форматы взаимодействия и инженерные принципы, по которым нас выбирают.",
         productsTitle: "Продукты",
         engagementsTitle: "Форматы работы",
         signalsTitle: "Сигналы качества",
@@ -267,21 +327,21 @@ export const strings = {
         eyebrow: "Team",
         title: "Команда",
         copy:
-          "Мы небольшая команда, которая лично ведет каждый проект от стратегии до релиза. Фокусируемся на архитектуре, скорости и надежности, а не на красивых обещаниях. Работаем как партнеры: погружаемся в продукт, берем ответственность и доводим до результата. Ни один ключевой этап не уходит на сторону.",
+          "Мы небольшая команда и лично ведем каждый проект от стратегии до релиза. Фокусируемся на архитектуре, скорости и надежности, работаем как партнеры и доводим ключевые этапы до результата сами.",
         members: [
           {
             name: "Avrelios",
             role: "Инженерный лидер",
             title: "Co-Founder / Engineering",
             description:
-              "Отвечает за всю техническую часть: архитектуру проектов, инженерные решения, разработку и инфраструктуру. Принимает ключевые технические решения и отвечает за стабильность и масштабируемость систем.",
+              "Отвечает за архитектуру, инженерные решения, разработку и инфраструктуру. Держит стабильность и масштабируемость систем.",
           },
           {
             name: "Erem Is",
             role: "Продукт и стратегия",
             title: "Co-Founder / Product & Strategy",
             description:
-              "Отвечает за стратегию, продукт и бизнес-направление. Занимается формированием продукта, коммуникациями, бизнес-процессами и развитием компании.",
+              "Отвечает за стратегию, продукт, коммуникации, бизнес-процессы и развитие компании.",
           },
         ],
       },
@@ -514,7 +574,7 @@ export const strings = {
       hero: {
         eyebrow: "Q · engineering lab",
         label: "Engineering partner for high-speed products",
-        title: "We design and launch high-load Web3 and AI systems",
+        title: "We design high-load Web3 and AI systems",
         subtitle:
           "We are an engineering and product team working as a co-founder: low-latency infrastructure and products where speed, reliability, and scale matter.",
         tagline: "Architecture. Performance. Outcome.",
@@ -522,6 +582,66 @@ export const strings = {
           "Low-latency infrastructure",
           "Web3 products & launch systems",
           "AI-enabled execution flows",
+        ],
+      },
+      execution: {
+        eyebrow: "Selected execution systems",
+        title:
+          "Designed for launch speed, signal clarity, and production reliability.",
+        subtitle:
+          "Execution systems should hold a fast path, readable operator state, and predictable behavior under load at the same time.",
+        status: "Execution surface",
+        meta: "Rust · Solana · AI · Order flow · Infra",
+        profileTitle: "Operating profile",
+        profileItems: [
+          "Low-latency infrastructure for launch-critical paths",
+          "Web3 products and execution scenarios with readable states",
+          "AI-enabled flows without losing operator control",
+        ],
+        profileMetrics: [
+          { label: "Path", value: "Fast" },
+          { label: "State", value: "Readable" },
+          { label: "Failure mode", value: "Predictable" },
+        ],
+        stageKicker: "Q / execution",
+        stageTitle: "Speed should not break readability.",
+        stageCopy:
+          "We shape the execution layer as a working surface: signal, risk gates, route logic, and operator feedback stay inside one coherent system.",
+        stagePoints: [
+          {
+            label: "Signal ingress",
+            value: "Market streams are gathered without turning into noise.",
+          },
+          {
+            label: "Risk gates",
+            value: "Decisions move through explicit checks and priorities.",
+          },
+          {
+            label: "Route logic",
+            value: "The critical path stays short, observable, and controllable.",
+          },
+          {
+            label: "Operator state",
+            value: "The interface shows what is happening now and what to do next.",
+          },
+        ],
+        flow: [
+          { label: "Ingress", value: "Market data" },
+          { label: "Risk", value: "Checks" },
+          { label: "Route", value: "Execution" },
+          { label: "Surface", value: "Readable state" },
+        ],
+        focusTitle: "Current focus",
+        focusItems: [
+          "Latency-aware market flows",
+          "Prediction systems with compact UX",
+          "Infrastructure that degrades predictably",
+        ],
+        preserveTitle: "What it must preserve",
+        preserveItems: [
+          "Speed without losing control",
+          "Readable state for product and operators",
+          "Reliability in launch and peak moments",
         ],
       },
       notOutsourcing: {

@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import CtaDropdown from "@/components/CtaDropdown";
 import FadeIn from "@/components/FadeIn";
 import SiteFooter from "@/components/SiteFooter";
@@ -59,8 +59,125 @@ const IconX = () => (
 
 const LINKS = SITE_LINKS;
 
+const getArtifactCode = (lang: "ru" | "en") =>
+  lang === "en"
+    ? `import { QuantumRuntime } from "@quantum/execution";
+import { MarketSignal } from "@quantum/signals";
+import { glassConsole } from "@quantum/interface";
+
+type Market = "solana" | "prediction" | "ai";
+
+const runtime = new QuantumRuntime({
+  mode: "real-time",
+  reliability: "production",
+  latencyBudget: "low",
+  observability: true,
+});
+
+const markets: Market[] = [
+  "solana",
+  "prediction",
+  "ai",
+];
+
+const signals = markets.map((market) =>
+  new MarketSignal({
+    market,
+    refreshRate: "sub-second",
+    noiseFilter: "operator-readable",
+  }),
+);
+
+const executionGraph = runtime.compose({
+  input: signals,
+  stages: [
+    "ingest",
+    "normalize",
+    "risk-check",
+    "route",
+    "render",
+  ],
+  guarantees: {
+    degradedState: "predictable",
+    interfaceState: "readable",
+    operatorControl: "always-on",
+  },
+});
+
+await executionGraph.compile({
+  target: "brand-terminal",
+  surface: "dark-glass",
+  motion: "restrained",
+});
+
+const output = await glassConsole.open({
+  theme: "warm-amber",
+  title: "Q / execution",
+  copy: "Company slogan",
+});
+
+runtime.reveal(output);`
+    : `import { QuantumRuntime } from "@quantum/execution";
+import { MarketSignal } from "@quantum/signals";
+import { glassConsole } from "@quantum/interface";
+
+type Market = "solana" | "prediction" | "ai";
+
+const runtime = new QuantumRuntime({
+  mode: "real-time",
+  reliability: "production",
+  latencyBudget: "low",
+  observability: true,
+});
+
+const markets: Market[] = [
+  "solana",
+  "prediction",
+  "ai",
+];
+
+const signals = markets.map((market) =>
+  new MarketSignal({
+    market,
+    refreshRate: "sub-second",
+    noiseFilter: "operator-readable",
+  }),
+);
+
+const executionGraph = runtime.compose({
+  input: signals,
+  stages: [
+    "ingest",
+    "normalize",
+    "risk-check",
+    "route",
+    "render",
+  ],
+  guarantees: {
+    degradedState: "predictable",
+    interfaceState: "readable",
+    operatorControl: "always-on",
+  },
+});
+
+await executionGraph.compile({
+  target: "brand-terminal",
+  surface: "dark-glass",
+  motion: "restrained",
+});
+
+const output = await glassConsole.open({
+  theme: "warm-amber",
+  title: "Q / execution",
+  copy: "Слоган компании",
+});
+
+runtime.reveal(output);`;
+
 export default function Home() {
   const { t, tArray, lang } = useI18n();
+  const [artifactCopied, setArtifactCopied] = useState(false);
+  const [artifactExecuted, setArtifactExecuted] = useState(false);
   const heroRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -76,7 +193,16 @@ export default function Home() {
 
   const navItems = getPrimaryNavItems(lang);
   const notOutsourcing = tArray<string>("home.notOutsourcing.points");
-  const proofItems = tArray<string>("home.hero.proof");
+  const executionProfileItems = tArray<string>("home.execution.profileItems");
+  const executionMetrics = tArray<{ label: string; value: string }>(
+    "home.execution.profileMetrics",
+  );
+  const executionStagePoints = tArray<{ label: string; value: string }>(
+    "home.execution.stagePoints",
+  );
+  const executionFlow = tArray<{ label: string; value: string }>("home.execution.flow");
+  const executionFocusItems = tArray<string>("home.execution.focusItems");
+  const executionPreserveItems = tArray<string>("home.execution.preserveItems");
   const processSteps = tArray<string>("home.process.steps");
   const alldayBullets = tArray<string>("home.products.allday.bullets");
   const spectraBullets = tArray<string>("home.products.spectra.bullets");
@@ -104,6 +230,13 @@ export default function Home() {
     date: lang === "en" ? post.dateEn : post.date,
     readTime: lang === "en" ? post.readTimeEn : post.readTime,
   }));
+  const artifactCode = getArtifactCode(lang);
+
+  const copyArtifactCode = async () => {
+    await navigator.clipboard.writeText(artifactCode);
+    setArtifactCopied(true);
+    window.setTimeout(() => setArtifactCopied(false), 1800);
+  };
 
   return (
     <div id="top" className="home-page">
@@ -168,78 +301,94 @@ export default function Home() {
             >
               <FadeIn delay={0.12} className="cinema-console-wrap" variant="soft-scale">
                 <div className="cinema-console">
-                <div className="cinema-console-head">
-                  <div>
-                    <p className="cinema-console-label">
-                      {lang === "en" ? "Selected execution systems" : "Selected execution systems"}
-                    </p>
-                    <p className="cinema-console-title">
-                      {lang === "en"
-                        ? "Designed for launch speed, signal clarity, and production reliability."
-                        : "Designed for launch speed, signal clarity, and production reliability."}
-                    </p>
+                  <div className="cinema-console-head">
+                    <div>
+                      <p className="cinema-console-label">{t("home.execution.eyebrow")}</p>
+                      <p className="cinema-console-title">{t("home.execution.title")}</p>
+                      <p className="cinema-console-subtitle">
+                        {t("home.execution.subtitle")}
+                      </p>
+                    </div>
+
+                    <div className="cinema-console-head-meta">
+                      <span className="cinema-console-chip">{t("home.execution.status")}</span>
+                      <p className="cinema-console-meta">{t("home.execution.meta")}</p>
+                    </div>
                   </div>
-                  <p className="cinema-console-meta">
-                    Rust · Solana · AI · Order flow · Infra
-                  </p>
-                </div>
 
-                <div className="cinema-console-panels">
-                  <article className="console-panel console-panel--thin">
-                    <p className="console-panel-kicker">
-                      {lang === "en" ? "Operating profile" : "Operating profile"}
-                    </p>
-                    <ul className="console-list">
-                      {proofItems.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </article>
+                  <div className="cinema-console-panels">
+                    <article className="console-panel console-panel--support">
+                      <p className="console-panel-kicker">{t("home.execution.profileTitle")}</p>
+                      <ul className="console-list">
+                        {executionProfileItems.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
 
-                  <article className="console-panel console-panel--focus">
-                    <div className="console-product">
-                      <Image
-                        className="product-logo"
-                        src="/product-adl.png"
-                        alt="AllDayLaunch"
-                        width={64}
-                        height={64}
-                      />
-                      <div>
-                        <p className="console-product-name">AllDayLaunch</p>
-                        <p className="console-product-copy">
-                          {t("home.products.allday.description")}
-                        </p>
+                      <div className="console-metric-strip">
+                        {executionMetrics.map((metric) => (
+                          <div key={metric.label} className="console-metric">
+                            <span>{metric.label}</span>
+                            <p>{metric.value}</p>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                    <div className="console-graph" aria-hidden="true">
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                    </div>
-                  </article>
+                    </article>
 
-                  <article className="console-panel console-panel--thin">
-                    <p className="console-panel-kicker">
-                      {lang === "en" ? "Current focus" : "Current focus"}
-                    </p>
-                    <div className="console-stack">
-                      <div>
-                        <span>01</span>
-                        <p>Latency-aware market flows</p>
+                    <article className="console-panel console-panel--focus console-panel--atlas">
+                      <div className="console-product console-product--hero">
+                        <div className="console-product-badge">{t("home.execution.stageKicker")}</div>
+                        <div>
+                          <p className="console-product-name">
+                            {t("home.execution.stageTitle")}
+                          </p>
+                          <p className="console-product-copy">
+                            {t("home.execution.stageCopy")}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <span>02</span>
-                        <p>Prediction systems with compact UX</p>
+
+                      <div className="console-atlas-grid">
+                        {executionStagePoints.map((item) => (
+                          <div key={item.label} className="console-atlas-item">
+                            <span>{item.label}</span>
+                            <p>{item.value}</p>
+                          </div>
+                        ))}
                       </div>
-                      <div>
-                        <span>03</span>
-                        <p>Infrastructure that degrades predictably</p>
+
+                      <div className="console-spectrum" aria-hidden="true">
+                        {executionFlow.map((item) => (
+                          <div key={item.label} className="console-spectrum-step">
+                            <span className="console-spectrum-arch" />
+                            <strong>{item.label}</strong>
+                            <p>{item.value}</p>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                  </article>
-                </div>
+                    </article>
+
+                    <article className="console-panel console-panel--support">
+                      <p className="console-panel-kicker">{t("home.execution.focusTitle")}</p>
+                      <div className="console-stack">
+                        {executionFocusItems.map((item, index) => (
+                          <div key={item}>
+                            <span>{(index + 1).toString().padStart(2, "0")}</span>
+                            <p>{item}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="console-support-divider" />
+
+                      <p className="console-panel-kicker">{t("home.execution.preserveTitle")}</p>
+                      <ul className="console-guard-list">
+                        {executionPreserveItems.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </article>
+                  </div>
                 </div>
               </FadeIn>
             </motion.div>
@@ -354,6 +503,99 @@ export default function Home() {
                   </div>
                 </div>
               </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        <section className="artifact-section">
+          <div className="artifact-shell">
+            <FadeIn className="artifact-copy" variant="slide-right">
+              <p className="eyebrow">
+                {lang === "en" ? "Execution artifact" : "Execution artifact"}
+              </p>
+              <h2 className="artifact-title">
+                {lang === "en"
+                  ? "A small fragment that opens the brand system."
+                  : "Фрагмент кода, который открывает бренд-систему."}
+              </h2>
+              <p className="artifact-text">
+                {lang === "en"
+                  ? "The right half behaves like an engineering note. Scroll through the fragment, then run it to open a dark glass output over the code."
+                  : "Правая половина работает как инженерная заметка. Код можно скроллить, изучить и запустить, чтобы поверх него открылся темный стеклянный output."}
+              </p>
+            </FadeIn>
+
+            <FadeIn className="artifact-stage" delay={0.08} variant="soft-scale">
+              <div className="artifact-code-window">
+                <div className="artifact-window-bar">
+                  <span>source.fragment.ts</span>
+                  <span>Q / execution</span>
+                </div>
+                <pre className="artifact-code-scroll">
+                  <code>{artifactCode}</code>
+                </pre>
+                <div className="artifact-window-actions">
+                  <button type="button" onClick={copyArtifactCode}>
+                    {artifactCopied
+                      ? lang === "en"
+                        ? "Copied"
+                        : "Скопировано"
+                      : lang === "en"
+                        ? "Copy code"
+                        : "Copy code"}
+                  </button>
+                  <button
+                    type="button"
+                    className="artifact-run-button"
+                    onClick={() => setArtifactExecuted(true)}
+                  >
+                    {lang === "en" ? "Run fragment" : "Run fragment"}
+                  </button>
+                </div>
+              </div>
+            </FadeIn>
+
+            <div className={`artifact-output${artifactExecuted ? " is-executed" : ""}`}>
+              <div className="artifact-output-grid" aria-hidden="true" />
+              <div className="artifact-terminal-bar">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="artifact-terminal-body">
+                <p className="artifact-terminal-kicker">
+                  {artifactExecuted
+                    ? lang === "en"
+                      ? "Output ready"
+                      : "Output ready"
+                    : lang === "en"
+                      ? "Awaiting execution"
+                      : "Awaiting execution"}
+                </p>
+                <p className="artifact-terminal-slogan">
+                  {artifactExecuted
+                    ? lang === "en"
+                      ? "Company slogan"
+                      : "Слоган компании"
+                    : "run ./source.fragment.ts"}
+                </p>
+                <p className="artifact-terminal-note">
+                  {artifactExecuted
+                    ? lang === "en"
+                      ? "Temporary placeholder. We will replace this with the final brand line."
+                      : "Временный placeholder. Заменим на финальную бренд-фразу."
+                    : lang === "en"
+                      ? "The terminal stays dark until the fragment is opened."
+                      : "Терминал остается темным, пока фрагмент не открыт."}
+                </p>
+                <button
+                  type="button"
+                  className="artifact-close-button"
+                  onClick={() => setArtifactExecuted(false)}
+                >
+                  {lang === "en" ? "Close output" : "Закрыть output"}
+                </button>
+              </div>
             </div>
           </div>
         </section>
