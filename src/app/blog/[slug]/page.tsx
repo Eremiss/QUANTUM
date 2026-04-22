@@ -11,44 +11,10 @@ import {
   posts,
   postsBySlug,
 } from "@/content/posts";
+import { getPrimaryNavItems, SITE_LINKS } from "@/content/site";
 import type { Language } from "@/i18n/strings";
 
-const LINKS = {
-  telegram: "https://t.me/quantumhft1",
-  x: "https://x.com/quantumhtf1",
-  
-  site: "https://quantum-hft.com/",
-  email: "quantumhft1@gmail.com",
-};
-
-const NAV_ITEMS = [
-  { label: "Главная", href: "/" },
-  { label: "Блог", href: "/blog" },
-  { label: "Market", href: "/market" },
-  { label: "Tech", href: "/tech" },
-  { label: "Docs", href: "/docs" },
-];
-
-const getNavItems = (lang: "en" | "ru") =>
-  NAV_ITEMS.map((item) => ({
-    ...item,
-    label:
-      item.href === "/"
-        ? lang === "en"
-          ? "Home"
-          : "Главная"
-        : item.href === "/blog"
-          ? lang === "en"
-            ? "Blog"
-            : "Блог"
-          : item.href === "/market"
-            ? "Market"
-            : item.href === "/tech"
-              ? "Tech"
-              : lang === "en"
-                ? "Docs"
-                : "Документация",
-  }));
+const LINKS = SITE_LINKS;
 
 const resolveLang = async (): Promise<Language> => "ru";
 
@@ -92,7 +58,7 @@ export default async function BlogPostPage({
 }) {
   const lang = await resolveLang();
   const post = postsBySlug[params.slug];
-  const navItems = getNavItems(lang);
+  const navItems = getPrimaryNavItems(lang);
 
   if (!post) {
     notFound();
@@ -107,7 +73,7 @@ export default async function BlogPostPage({
     .slice(0, 3);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="subpage subpage--blog">
       <SiteHeader
         navItems={navItems}
         telegram={LINKS.telegram}
@@ -115,14 +81,14 @@ export default async function BlogPostPage({
       />
       <CtaDropdown variant="fab" telegram={LINKS.telegram} email={LINKS.email} />
 
-      <main className="pt-24">
-        <section className="section pt-12">
-          <div className="container-main">
+      <main>
+        <section className="subpage-docs-hero">
+          <div className="subpage-shell">
             <Link className="eyebrow link-underline" href="/blog">
               {lang === "en" ? "Back to blog" : "Назад в блог"}
             </Link>
-            <div className="page-hero mt-6">
-              <FadeIn>
+            <div className="page-hero page-hero--blog mt-6">
+              <FadeIn variant="soft-scale">
                 <p className="eyebrow">{CATEGORY_LABELS[post.category]}</p>
                 <h1 className="section-title mt-6 max-w-3xl">
                   {lang === "en" ? post.titleEn : post.title}
@@ -174,7 +140,7 @@ export default async function BlogPostPage({
         </section>
 
         <section className="section">
-          <div className="container-main">
+          <div className="subpage-shell">
             <FadeIn>
               <p className="eyebrow">
                 {lang === "en" ? "More" : "Еще материалы"}
@@ -208,7 +174,7 @@ export default async function BlogPostPage({
       <SiteFooter
         telegram={LINKS.telegram}
         email={LINKS.email}
-        x={LINKS.x}
+        x={LINKS.xQuantum}
         site={LINKS.site}
       />
     </div>

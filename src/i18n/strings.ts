@@ -17,6 +17,7 @@ export const strings = {
       contacts: "Контакты",
       discussArchitecture: "Обсудить архитектуру",
       startConversation: "Начать разговор",
+      viewWork: "Смотреть кейсы",
       openSite: "Открыть сайт",
       openTelegram: "Открыть Telegram",
       openX: "Открыть X",
@@ -177,11 +178,17 @@ export const strings = {
     home: {
       hero: {
         eyebrow: "Q · engineering lab",
+        label: "Engineering partner for high-speed products",
         title:
           "Проектируем и запускаем высоконагруженные Web3 и AI-системы",
         subtitle:
           "Мы — инженерная и продуктовая команда, работающая как co-founder: low-latency инфраструктура и продукты, где важны скорость, надежность и масштабирование.",
         tagline: "Архитектура. Производительность. Результат.",
+        proof: [
+          "Low-latency infrastructure",
+          "Web3 products & launch systems",
+          "AI-enabled execution flows",
+        ],
       },
       notOutsourcing: {
         eyebrow: "Not outsourcing",
@@ -221,6 +228,39 @@ export const strings = {
             description: "Инфраструктура / аналитика / execution",
           },
           { title: "Enterprise", description: "Надежность / контроль / масштаб" },
+        ],
+      },
+      trust: {
+        eyebrow: "Selected work",
+        title: "Продукты, форматы и сигналы доверия",
+        subtitle:
+          "Показываем не абстрактные услуги, а реальные рабочие контуры: собственные продукты, форматы взаимодействия и инженерные принципы, по которым нас выбирают.",
+        productsTitle: "Продукты",
+        engagementsTitle: "Форматы работы",
+        signalsTitle: "Сигналы качества",
+        products: [
+          {
+            name: "AllDayLaunch",
+            label: "Solana launch stack",
+            description:
+              "Платформа запуска и execution-инфраструктура для creators и команд, где счет идет на скорость реакции.",
+          },
+          {
+            name: "SpectraView",
+            label: "Prediction market tooling",
+            description:
+              "Трейдинг и мониторинг для prediction markets с упором на real-time сигналы, риск-контроль и скорость.",
+          },
+        ],
+        engagements: [
+          "MVP и запуск продукта под дедлайн",
+          "Low-latency execution и торговая инфраструктура",
+          "Архитектура данных, риск-контур и продакшн reliability",
+        ],
+        signals: [
+          "Работаем как компактная senior-команда",
+          "Делаем critical path коротким и измеримым",
+          "Доводим до продакшна, а не до красивого демо",
         ],
       },
       team: {
@@ -314,6 +354,7 @@ export const strings = {
       contacts: "Contacts",
       discussArchitecture: "Discuss architecture",
       startConversation: "Start a conversation",
+      viewWork: "View work",
       openSite: "Open site",
       openTelegram: "Open Telegram",
       openX: "Open X",
@@ -472,10 +513,16 @@ export const strings = {
     home: {
       hero: {
         eyebrow: "Q · engineering lab",
+        label: "Engineering partner for high-speed products",
         title: "We design and launch high-load Web3 and AI systems",
         subtitle:
           "We are an engineering and product team working as a co-founder: low-latency infrastructure and products where speed, reliability, and scale matter.",
         tagline: "Architecture. Performance. Outcome.",
+        proof: [
+          "Low-latency infrastructure",
+          "Web3 products & launch systems",
+          "AI-enabled execution flows",
+        ],
       },
       notOutsourcing: {
         eyebrow: "Not outsourcing",
@@ -515,6 +562,39 @@ export const strings = {
             description: "Infrastructure / analytics / execution",
           },
           { title: "Enterprise", description: "Reliability / control / scale" },
+        ],
+      },
+      trust: {
+        eyebrow: "Selected work",
+        title: "Products, engagements, and proof signals",
+        subtitle:
+          "We show real operating surfaces instead of abstract services: our products, the ways we engage, and the engineering principles teams hire us for.",
+        productsTitle: "Products",
+        engagementsTitle: "Engagements",
+        signalsTitle: "Proof signals",
+        products: [
+          {
+            name: "AllDayLaunch",
+            label: "Solana launch stack",
+            description:
+              "Launch platform and execution infrastructure for creators and teams where reaction time directly matters.",
+          },
+          {
+            name: "SpectraView",
+            label: "Prediction market tooling",
+            description:
+              "Trading and monitoring stack for prediction markets focused on real-time signals, risk control, and speed.",
+          },
+        ],
+        engagements: [
+          "MVP and launch architecture under deadline",
+          "Low-latency execution and trading infrastructure",
+          "Data architecture, risk systems, and production reliability",
+        ],
+        signals: [
+          "Compact senior team with direct ownership",
+          "Critical paths kept short and measurable",
+          "We ship to production, not just to demo",
         ],
       },
       team: {

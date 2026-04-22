@@ -60,14 +60,14 @@ export default function CtaDropdown({
       className={
         isFab
           ? "cta-fab"
-          : "order-2 relative self-end md:order-3 md:self-auto"
+          : "cta-header-dropdown order-2 relative self-end md:order-3 md:self-auto"
       }
     >
       <summary
         className={
           isFab
             ? "cta-fab-button"
-            : "btn-primary flex cursor-pointer items-center gap-2 px-4 py-2 text-[11px] uppercase tracking-[0.26em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+            : "cta-header-button flex cursor-pointer items-center gap-2 px-4 py-2 text-[11px] uppercase tracking-[0.26em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
         }
         aria-label={isFab ? t("cta.contacts") : undefined}
       >

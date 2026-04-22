@@ -6,21 +6,10 @@ import FadeIn from "@/components/FadeIn";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { authors } from "@/content/posts";
+import { getPrimaryNavItems, SITE_LINKS } from "@/content/site";
 import { useI18n } from "@/i18n/LanguageProvider";
 
-const LINKS = {
-  telegram: "https://t.me/quantumhft1",
-  x: "https://x.com/quantumhtf1",
-  site: "https://quantum-hft.com/",
-  email: "quantumhft1@gmail.com",
-};
-
-const NAV_ITEMS = [
-  { label: "Главная", href: "/" },
-  { label: "Блог", href: "/blog" },
-  { label: "Market", href: "/market" },
-  { label: "Tech", href: "/tech" },
-];
+const LINKS = SITE_LINKS;
 
 const getInitials = (name: string) =>
   name
@@ -33,20 +22,10 @@ const getInitials = (name: string) =>
 
 export default function BlogPage() {
   const { t, lang } = useI18n();
-  const navItems = NAV_ITEMS.map((item) => ({
-    ...item,
-    label:
-      item.href === "/"
-        ? t("nav.home")
-        : item.href === "/blog"
-          ? t("nav.blog")
-          : item.href === "/market"
-            ? t("nav.market")
-            : t("nav.tech"),
-  }));
+  const navItems = getPrimaryNavItems(lang);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="subpage subpage--blog">
       <SiteHeader
         navItems={navItems}
         telegram={LINKS.telegram}
@@ -54,11 +33,11 @@ export default function BlogPage() {
       />
       <CtaDropdown variant="fab" telegram={LINKS.telegram} email={LINKS.email} />
 
-      <main className="pt-24">
-        <section className="section pt-12">
-          <div className="container-main">
+      <main>
+        <section className="subpage-docs-hero">
+          <div className="subpage-shell">
             <div className="page-hero page-hero--blog">
-              <FadeIn>
+              <FadeIn variant="soft-scale">
                 <p className="eyebrow">{t("blog.eyebrow")}</p>
                 <h1 className="section-title mt-6">{t("blog.title")}</h1>
                 <p className="section-subtitle mt-6 max-w-2xl">
@@ -71,7 +50,7 @@ export default function BlogPage() {
         </section>
 
         <section className="section">
-          <div className="container-main">
+          <div className="subpage-shell">
             <FadeIn>
               <p className="eyebrow">{t("blog.authors.eyebrow")}</p>
               <h2 className="section-title mt-6">
@@ -124,7 +103,7 @@ export default function BlogPage() {
       <SiteFooter
         telegram={LINKS.telegram}
         email={LINKS.email}
-        x={LINKS.x}
+        x={LINKS.xQuantum}
         site={LINKS.site}
       />
     </div>

@@ -5,35 +5,14 @@ import CtaDropdown from "@/components/CtaDropdown";
 import FadeIn from "@/components/FadeIn";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { getPrimaryNavItems, SITE_LINKS } from "@/content/site";
 import { useI18n } from "@/i18n/LanguageProvider";
 
-const LINKS = {
-  telegram: "https://t.me/quantumhft1",
-  x: "https://x.com/quantumhtf1",
-  site: "https://quantum-hft.com/",
-  email: "quantumhft1@gmail.com",
-};
-
-const NAV_ITEMS = [
-  { label: "Главная", href: "/" },
-  { label: "Блог", href: "/blog" },
-  { label: "Market", href: "/market" },
-  { label: "Tech", href: "/tech" },
-];
+const LINKS = SITE_LINKS;
 
 export default function TechPage() {
-  const { t } = useI18n();
-  const navItems = NAV_ITEMS.map((item) => ({
-    ...item,
-    label:
-      item.href === "/"
-        ? t("nav.home")
-        : item.href === "/blog"
-          ? t("nav.blog")
-          : item.href === "/market"
-            ? t("nav.market")
-            : t("nav.tech"),
-  }));
+  const { t, lang } = useI18n();
+  const navItems = getPrimaryNavItems(lang);
 
   return (
     <div className="relative overflow-hidden">
@@ -64,7 +43,7 @@ export default function TechPage() {
       <SiteFooter
         telegram={LINKS.telegram}
         email={LINKS.email}
-        x={LINKS.x}
+        x={LINKS.xQuantum}
         site={LINKS.site}
       />
     </div>

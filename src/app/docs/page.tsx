@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import CtaDropdown from "@/components/CtaDropdown";
 import FadeIn from "@/components/FadeIn";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import { useMemo, useState } from "react";
+import { getPrimaryNavItems, SITE_LINKS } from "@/content/site";
+import { useState } from "react";
 import { useI18n } from "@/i18n/LanguageProvider";
 
 type DocsMetric = {
@@ -19,35 +21,11 @@ type DocsCard = {
   status?: string;
 };
 
-const LINKS = {
-  telegram: "https://t.me/quantumhft1",
-  x: "https://x.com/quantumhtf1",
-  site: "https://quantum-hft.com/",
-  alldaySite: "https://alldaylaunch.io/login",
-  spectraSite: "https://www.spectraview.io/",
-  email: "quantumhft1@gmail.com",
-};
-
-const NAV_ITEMS = [
-  { label: "Главная", href: "/" },
-  { label: "Блог", href: "/blog" },
-  { label: "Market", href: "/market" },
-  { label: "Tech", href: "/tech" },
-];
+const LINKS = SITE_LINKS;
 
 export default function DocsPage() {
-  const { t, tArray } = useI18n();
-  const navItems = NAV_ITEMS.map((item) => ({
-    ...item,
-    label:
-      item.href === "/"
-        ? t("nav.home")
-        : item.href === "/blog"
-          ? t("nav.blog")
-          : item.href === "/market"
-          ? t("nav.market")
-          : t("nav.tech"),
-  }));
+  const { t, tArray, lang } = useI18n();
+  const navItems = getPrimaryNavItems(lang);
 
   const metricItems = tArray<DocsMetric>("docs.metrics.items");
   const caseItems = tArray<DocsCard>("docs.sections.cases.items");
@@ -57,6 +35,7 @@ export default function DocsPage() {
   const reliabilityBullets = tArray<string>("docs.sections.reliability.bullets");
   const processBullets = tArray<string>("docs.sections.process.bullets");
 
+  const [navQuery, setNavQuery] = useState("");
   const sectionNav = [
     { id: "overview", label: t("docs.sections.overview.title") },
     { id: "architecture", label: t("docs.sections.architecture.title") },
@@ -66,17 +45,10 @@ export default function DocsPage() {
     { id: "cases", label: t("docs.sections.cases.title") },
     { id: "links", label: t("docs.sections.links.title") },
   ];
-
-  const [navQuery, setNavQuery] = useState("");
-  const filteredNav = useMemo(() => {
-    const query = navQuery.trim().toLowerCase();
-    if (!query) {
-      return sectionNav;
-    }
-    return sectionNav.filter((item) =>
-      item.label.toLowerCase().includes(query),
-    );
-  }, [navQuery, sectionNav]);
+  const query = navQuery.trim().toLowerCase();
+  const filteredNav = !query
+    ? sectionNav
+    : sectionNav.filter((item) => item.label.toLowerCase().includes(query));
 
   const caseLinks: Record<string, string> = {
     AllDayLaunch: LINKS.alldaySite,
@@ -84,7 +56,7 @@ export default function DocsPage() {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="subpage subpage--docs">
       <SiteHeader
         navItems={navItems}
         telegram={LINKS.telegram}
@@ -92,23 +64,23 @@ export default function DocsPage() {
       />
       <CtaDropdown variant="fab" telegram={LINKS.telegram} email={LINKS.email} />
 
-      <main className="pt-24">
-        <section className="section pt-12">
-          <div className="container-main">
+      <main>
+        <section className="subpage-docs-hero">
+          <div className="subpage-shell">
             <div className="page-hero page-hero--docs">
-              <FadeIn>
+              <FadeIn variant="soft-scale">
                 <p className="eyebrow">Docs</p>
                 <h1 className="section-title mt-6">{t("docs.title")}</h1>
                 <p className="section-subtitle mt-6 max-w-2xl">
                   {t("docs.subtitle")}
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a className="btn-secondary" href="/blog">
+                  <Link className="btn-secondary" href="/blog">
                     {t("cta.readBlog")}
-                  </a>
-                  <a className="btn-primary" href="/">
+                  </Link>
+                  <Link className="btn-primary" href="/">
                     {t("cta.backHome")}
-                  </a>
+                  </Link>
                 </div>
               </FadeIn>
             </div>
@@ -116,7 +88,7 @@ export default function DocsPage() {
         </section>
 
         <section className="section pt-0">
-          <div className="container-main">
+          <div className="subpage-shell">
             <div className="docs-layout">
               <aside className="docs-nav">
                 <p className="docs-nav-title">{t("docs.navTitle")}</p>
@@ -276,7 +248,7 @@ export default function DocsPage() {
       <SiteFooter
         telegram={LINKS.telegram}
         email={LINKS.email}
-        x={LINKS.x}
+        x={LINKS.xQuantum}
         site={LINKS.site}
       />
     </div>

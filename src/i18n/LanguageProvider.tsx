@@ -45,11 +45,7 @@ const resolveInitialLang = (): Language => {
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>("ru");
-
-  useEffect(() => {
-    setLangState(resolveInitialLang());
-  }, []);
+  const [lang, setLangState] = useState<Language>(resolveInitialLang);
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, lang);
