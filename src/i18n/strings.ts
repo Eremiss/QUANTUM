@@ -323,6 +323,65 @@ export const strings = {
           "Доводим до продакшна, а не до красивого демо",
         ],
       },
+      clients: {
+        eyebrow: "Clients & product contours",
+        title: "С кем мы работаем и какие продукты для них запускаем",
+        subtitle:
+          "Обычно нас зовут туда, где продукт уже упирается в скорость, execution-контур, real-time данные или запуск под жесткий дедлайн.",
+        signalsTitle: "Когда подключаемся",
+        productsLabel: "Типовые продукты",
+        signals: [
+          "Нужно быстро дойти до продакшна без потери качества",
+          "Критический путь должен остаться коротким и наблюдаемым",
+          "Команде нужен engineering partner, а не просто подрядчик",
+        ],
+        items: [
+          {
+            title: "MVP-стартапы",
+            label: "Launch-critical build",
+            description:
+              "Помогаем собрать рабочее ядро продукта, архитектуру запуска и первую production-версию без временных костылей, которые потом тормозят рост.",
+            products: [
+              "MVP-платформы и кабинеты операторов",
+              "Платежные, launch- и data-контуры",
+              "Админки, аналитика и real-time события",
+            ],
+          },
+          {
+            title: "Трейдинговые команды",
+            label: "Low-latency execution",
+            description:
+              "Входим там, где миллисекунды влияют на PnL, а системе нужны читаемые состояния, риск-контроль и предсказуемое поведение под нагрузкой.",
+            products: [
+              "Execution bots и routing engines",
+              "Copy-trading и сигналинг в real time",
+              "Риск-панели и operator consoles",
+            ],
+          },
+          {
+            title: "Web3-команды и фонды",
+            label: "Infrastructure & launch systems",
+            description:
+              "Проектируем контуры для запуска токенов, работы с ончейн-данными, аналитики и операционных интерфейсов там, где важны скорость и надежность.",
+            products: [
+              "Token launch platforms",
+              "Onchain analytics и wallet intelligence",
+              "Инфраструктура для high-load сценариев",
+            ],
+          },
+          {
+            title: "Enterprise-команды",
+            label: "Control & reliability",
+            description:
+              "Подключаемся, когда нужно совместить масштаб, контроль, отказоустойчивость и понятный интерфейс для внутренних команд и операторов.",
+            products: [
+              "Внутренние платформы и control panels",
+              "Data pipelines и мониторинговые системы",
+              "Интеграционные сервисы и automation flows",
+            ],
+          },
+        ],
+      },
       team: {
         eyebrow: "Team",
         title: "Команда",
@@ -715,6 +774,65 @@ export const strings = {
           "Compact senior team with direct ownership",
           "Critical paths kept short and measurable",
           "We ship to production, not just to demo",
+        ],
+      },
+      clients: {
+        eyebrow: "Clients & product contours",
+        title: "Who we work with and the products we launch for them",
+        subtitle:
+          "Teams usually bring us in when their product starts depending on speed, execution paths, real-time data, or a launch under a hard deadline.",
+        signalsTitle: "When we get involved",
+        productsLabel: "Typical products",
+        signals: [
+          "The team needs to reach production fast without losing quality",
+          "The critical path has to stay short, observable, and controlled",
+          "They need an engineering partner, not just a contractor",
+        ],
+        items: [
+          {
+            title: "MVP startups",
+            label: "Launch-critical build",
+            description:
+              "We help shape the working product core, launch architecture, and first production version without temporary hacks that later block growth.",
+            products: [
+              "MVP platforms and operator dashboards",
+              "Payment, launch, and data flows",
+              "Admin panels, analytics, and real-time events",
+            ],
+          },
+          {
+            title: "Trading teams",
+            label: "Low-latency execution",
+            description:
+              "We step in where milliseconds affect PnL and the system needs readable states, risk control, and predictable behavior under load.",
+            products: [
+              "Execution bots and routing engines",
+              "Copy-trading and real-time signaling",
+              "Risk panels and operator consoles",
+            ],
+          },
+          {
+            title: "Web3 teams & funds",
+            label: "Infrastructure & launch systems",
+            description:
+              "We design launch flows, onchain data systems, analytics, and operating surfaces where speed and reliability matter from day one.",
+            products: [
+              "Token launch platforms",
+              "Onchain analytics and wallet intelligence",
+              "Infrastructure for high-load scenarios",
+            ],
+          },
+          {
+            title: "Enterprise teams",
+            label: "Control & reliability",
+            description:
+              "We get involved when scale, control, fault tolerance, and clear internal interfaces all have to work together in one system.",
+            products: [
+              "Internal platforms and control panels",
+              "Data pipelines and monitoring systems",
+              "Integration services and automation flows",
+            ],
+          },
         ],
       },
       team: {

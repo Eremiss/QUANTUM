@@ -6,14 +6,14 @@ import { strings } from "@/i18n/strings";
 
 const manrope = Manrope({
   variable: "--font-display",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-code",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500"],
   display: "swap",
 });

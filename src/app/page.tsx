@@ -213,15 +213,19 @@ export default function Home() {
   }>("home.trust.products");
   const trustEngagements = tArray<string>("home.trust.engagements");
   const trustSignals = tArray<string>("home.trust.signals");
+  const clientSignals = tArray<string>("home.clients.signals");
+  const clientItems = tArray<{
+    title: string;
+    label: string;
+    description: string;
+    products: string[];
+  }>("home.clients.items");
   const teamMembers = tArray<{
     name: string;
     role: string;
     title: string;
     description: string;
-  }>("home.team.members").map((member, index) => ({
-    ...member,
-    photo: index === 0 ? "/team-1.svg" : "/team-2.svg",
-  }));
+  }>("home.team.members");
 
   const featuredPosts = posts.slice(0, 3).map((post) => ({
     slug: post.slug,
@@ -509,23 +513,7 @@ export default function Home() {
 
         <section className="artifact-section">
           <div className="artifact-shell">
-            <FadeIn className="artifact-copy" variant="slide-right">
-              <p className="eyebrow">
-                {lang === "en" ? "Execution artifact" : "Execution artifact"}
-              </p>
-              <h2 className="artifact-title">
-                {lang === "en"
-                  ? "A small fragment that opens the brand system."
-                  : "Фрагмент кода, который открывает бренд-систему."}
-              </h2>
-              <p className="artifact-text">
-                {lang === "en"
-                  ? "The right half behaves like an engineering note. Scroll through the fragment, then run it to open a dark glass output over the code."
-                  : "Правая половина работает как инженерная заметка. Код можно скроллить, изучить и запустить, чтобы поверх него открылся темный стеклянный output."}
-              </p>
-            </FadeIn>
-
-            <FadeIn className="artifact-stage" delay={0.08} variant="soft-scale">
+            <FadeIn className="artifact-stage" variant="soft-scale">
               <div className="artifact-code-window">
                 <div className="artifact-window-bar">
                   <span>source.fragment.ts</span>
@@ -553,6 +541,22 @@ export default function Home() {
                   </button>
                 </div>
               </div>
+            </FadeIn>
+
+            <FadeIn className="artifact-copy" delay={0.08} variant="slide-left">
+              <p className="eyebrow">
+                {lang === "en" ? "Execution artifact" : "Execution artifact"}
+              </p>
+              <h2 className="artifact-title">
+                {lang === "en"
+                  ? "A small fragment that opens the brand system."
+                  : "Фрагмент кода, который открывает бренд-систему."}
+              </h2>
+              <p className="artifact-text">
+                {lang === "en"
+                  ? "The left side behaves like an engineering note. Scroll through the fragment, then run it to open a dark glass output over the code."
+                  : "Левая половина работает как инженерная заметка. Код можно скроллить, изучить и запустить, чтобы поверх него открылся темный стеклянный output."}
+              </p>
             </FadeIn>
 
             <div className={`artifact-output${artifactExecuted ? " is-executed" : ""}`}>
@@ -669,6 +673,72 @@ export default function Home() {
                   ))}
                 </div>
               </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        <section id="clients" className="cinema-dark-band client-ledger-section scroll-mt-28">
+          <div className="container-main">
+            <div className="client-ledger-layout">
+              <FadeIn className="client-ledger-aside" variant="slide-right">
+                <div>
+                  <p className="eyebrow">{t("home.clients.eyebrow")}</p>
+                  <h2 className="dark-band-title">{t("home.clients.title")}</h2>
+                </div>
+                <p className="client-ledger-copy">{t("home.clients.subtitle")}</p>
+
+                <div className="client-ledger-signals">
+                  <p className="client-ledger-heading">{t("home.clients.signalsTitle")}</p>
+                  <div className="client-ledger-signal-list">
+                    {clientSignals.map((item, index) => (
+                      <div key={item} className="client-ledger-signal">
+                        <span>{(index + 1).toString().padStart(2, "0")}</span>
+                        <p>{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <Link className="client-ledger-link" href="/work">
+                  {t("cta.viewWork")}
+                </Link>
+              </FadeIn>
+
+              <div className="client-ledger-list">
+                {clientItems.map((item, index) => (
+                  <FadeIn
+                    key={item.title}
+                    className="client-ledger-row"
+                    delay={0.05 * index}
+                    variant={index % 2 === 0 ? "slide-right" : "slide-left"}
+                  >
+                    <div className="client-ledger-meta">
+                      <span className="client-ledger-index">
+                        {(index + 1).toString().padStart(2, "0")}
+                      </span>
+                      <p className="client-ledger-label">{item.label}</p>
+                    </div>
+
+                    <div className="client-ledger-main">
+                      <h3 className="client-ledger-title">{item.title}</h3>
+                      <p className="client-ledger-description">{item.description}</p>
+                    </div>
+
+                    <div className="client-ledger-products">
+                      <p className="client-ledger-products-title">
+                        {t("home.clients.productsLabel")}
+                      </p>
+                      <div className="client-ledger-tags">
+                        {item.products.map((product) => (
+                          <span key={product} className="client-ledger-tag">
+                            {product}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -845,25 +915,24 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="cinema-dark-band cinema-dark-band--large">
+        <section className="cinema-dark-band cinema-dark-band--large team-process-section">
           <div className="container-main">
-            <div className="dark-band-grid dark-band-grid--tall">
-              <FadeIn variant="slide-right">
-                <p className="eyebrow">{t("home.team.eyebrow")}</p>
-                <h2 className="dark-band-title">{t("home.team.title")}</h2>
-                <p className="dark-band-copy">{t("home.team.copy")}</p>
+            <div className="team-process-layout">
+              <FadeIn className="team-process-team" variant="soft-scale">
+                <div className="team-process-head">
+                  <div>
+                    <p className="eyebrow">{t("home.team.eyebrow")}</p>
+                    <h2 className="dark-band-title">{t("home.team.title")}</h2>
+                  </div>
+                  <p className="dark-band-copy">{t("home.team.copy")}</p>
+                </div>
 
                 <div className="team-inline-grid">
-                  {teamMembers.map((member) => (
+                  {teamMembers.map((member, index) => (
                     <article key={member.name} className="team-inline-card">
-                      <div className="team-photo team-photo--inline relative overflow-hidden">
-                        <Image
-                          src={member.photo}
-                          alt={member.name}
-                          fill
-                          sizes="104px"
-                          className="object-cover"
-                        />
+                      <div className="team-sigil" aria-hidden="true">
+                        <span>{index === 0 ? "01" : "02"}</span>
+                        <strong>{member.name.slice(0, 1)}</strong>
                       </div>
                       <div>
                         <p className="team-inline-name">{member.name}</p>
@@ -876,14 +945,21 @@ export default function Home() {
                 </div>
               </FadeIn>
 
-              <FadeIn delay={0.08} variant="slide-left">
-                <p className="eyebrow">{t("home.process.eyebrow")}</p>
-                <h2 className="dark-band-title">{t("home.process.title")}</h2>
-                <p className="dark-band-copy">{t("home.process.subtitle")}</p>
-                <div className="line-list line-list--process">
+              <FadeIn delay={0.08} className="process-scale" variant="soft-scale">
+                <div className="process-scale-head">
+                  <div>
+                    <p className="eyebrow">{t("home.process.eyebrow")}</p>
+                    <h2 className="dark-band-title">{t("home.process.title")}</h2>
+                  </div>
+                  <p className="dark-band-copy">{t("home.process.subtitle")}</p>
+                </div>
+
+                <div className="process-scale-rail">
                   {processSteps.map((step, index) => (
-                    <div key={step} className="line-list-item">
-                      <span>{(index + 1).toString().padStart(2, "0")}</span>
+                    <div key={step} className="process-scale-step">
+                      <span className="process-scale-node">
+                        {(index + 1).toString().padStart(2, "0")}
+                      </span>
                       <p>{step}</p>
                     </div>
                   ))}
