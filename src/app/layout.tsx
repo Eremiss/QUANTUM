@@ -1,25 +1,13 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Manrope } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
-import { strings } from "@/i18n/strings";
+import { strings, type Language } from "@/i18n/strings";
 
-const manrope = Manrope({
-  variable: "--font-display",
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
+const INITIAL_LANG: Language = "ru";
 
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-code",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500"],
-  display: "swap",
-});
-
-export async function generateMetadata(): Promise<Metadata> {
-  const lang = "ru";
+export function generateMetadata(): Metadata {
+  const lang = INITIAL_LANG;
   return {
     title: strings[lang].meta.title,
     description: strings[lang].meta.description,
@@ -29,14 +17,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="ru">
-      <body
-        className={`${manrope.variable} ${jetBrainsMono.variable} min-h-screen bg-[var(--bg)] text-[var(--fg)] antialiased`}
-      >
-        <LanguageProvider>{children}</LanguageProvider>
+    <html lang={INITIAL_LANG}>
+      <body className="min-h-screen bg-[var(--bg)] text-[var(--fg)] antialiased">
+        <LanguageProvider initialLang={INITIAL_LANG}>{children}</LanguageProvider>
       </body>
     </html>
   );

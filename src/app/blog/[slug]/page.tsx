@@ -30,10 +30,11 @@ const getInitials = (name: string) =>
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const lang = await resolveLang();
-  const post = postsBySlug[params.slug];
+  const { slug } = await params;
+  const post = postsBySlug[slug];
 
   if (!post) {
     return {
@@ -54,10 +55,11 @@ export function generateStaticParams() {
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const lang = await resolveLang();
-  const post = postsBySlug[params.slug];
+  const { slug } = await params;
+  const post = postsBySlug[slug];
   const navItems = getPrimaryNavItems(lang);
 
   if (!post) {

@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import {
   CATEGORY_LABELS,
   getAuthorById,
@@ -152,6 +159,16 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
 
   const openPost = (slug: string) => {
     setFeaturedSlug(slug);
+  };
+
+  const handleMiniCardKeyDown = (
+    event: KeyboardEvent<HTMLDivElement>,
+    slug: string,
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openPost(slug);
+    }
   };
 
   const renderMiniPagination = () => {
@@ -352,7 +369,11 @@ export default function BlogIndex({ initialCategory = "all" }: BlogIndexProps) {
                     key={post.slug}
                     className="blog-mini-card"
                     data-category={post.category}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={post.title}
                     onClick={() => openPost(post.slug)}
+                    onKeyDown={(event) => handleMiniCardKeyDown(event, post.slug)}
                   >
                     <div
                       className={`blog-visual blog-visual--mini${

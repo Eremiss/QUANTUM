@@ -22,6 +22,9 @@ const I18nContext = createContext<I18nContextValue | null>(null);
 
 const STORAGE_KEY = "q-lang";
 
+const isLanguage = (value: string | undefined | null): value is Language =>
+  value === "ru" || value === "en";
+
 const getByPath = (obj: Record<string, unknown>, path: string) =>
   path
     .split(".")
@@ -30,28 +33,37 @@ const getByPath = (obj: Record<string, unknown>, path: string) =>
       obj,
     );
 
-const resolveInitialLang = (): Language => {
-  if (typeof window === "undefined") {
-    return "ru";
-  }
-
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === "ru" || stored === "en") {
-    return stored;
-  }
-
-  const browserLang = window.navigator.language.toLowerCase();
-  return browserLang.startsWith("ru") ? "ru" : "en";
-};
-
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>(resolveInitialLang);
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: ReactNode;
+  initialLang: Language;
+}) {
+  const [lang, setLangState] = useState<Language>(initialLang);
+  const [hasHydrated, setHasHydrated] = useState(false);
 
   useEffect(() => {
+    const handle = window.setTimeout(() => {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
+      if (isLanguage(stored)) {
+        setLangState(stored);
+      }
+      setHasHydrated(true);
+    }, 0);
+
+    return () => window.clearTimeout(handle);
+  }, []);
+
+  useEffect(() => {
+    if (!hasHydrated) {
+      return;
+    }
+
     window.localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang;
     document.cookie = `${STORAGE_KEY}=${lang}; path=/; max-age=31536000; samesite=lax`;
-  }, [lang]);
+  }, [hasHydrated, lang]);
 
   const setLang = useCallback((nextLang: Language) => {
     setLangState(nextLang);

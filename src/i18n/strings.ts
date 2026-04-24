@@ -445,6 +445,11 @@ export const strings = {
           "Если у вас есть продукт или инфраструктурная задача, где важны скорость, масштаб и качество решений — давайте обсудим архитектуру.",
       },
       footer: {
+        description:
+          "Инфраструктура, продукты и execution-системы для рынков реального времени.",
+        navigate: "Навигация",
+        home: "Главная",
+        connect: "Связаться",
         telegram: "Telegram: @quantumhft1",
         email: "Email: quantumhft1@gmail.com",
         x: "X: @quantumhtf1",
@@ -898,6 +903,11 @@ export const strings = {
           "If you have a product or infrastructure challenge where speed, scale, and quality matter — let’s discuss the architecture.",
       },
       footer: {
+        description:
+          "Infrastructure, products, and execution systems for real-time markets.",
+        navigate: "Navigate",
+        home: "Home",
+        connect: "Connect",
         telegram: "Telegram: @quantumhft1",
         email: "Email: quantumhft1@gmail.com",
         x: "X: @quantumhtf1",

@@ -26,7 +26,6 @@ export default function SiteHeader({
   animateNav = false,
 }: SiteHeaderProps) {
   const { lang } = useI18n();
-  const [logoReady, setLogoReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMegaHref, setActiveMegaHref] = useState<string | null>(null);
   const navClasses = `${
@@ -152,22 +151,35 @@ export default function SiteHeader({
           onMouseLeave={() => setActiveMegaHref(null)}
         >
           <div className="site-header-bar">
-            <button
-              type="button"
-              className="logo-sweep-motion logo-sweep-button"
-              onClick={() => window.location.reload()}
-              aria-label="Обновить сайт"
-              disabled={!logoReady}
-              onAnimationEnd={() => setLogoReady(true)}
+            <Link
+              className="site-logo-link"
+              href="/"
+              aria-label="DesignQuantum"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 78,
+                height: 64,
+                flex: "0 0 78px",
+              }}
             >
               <Image
-                className="logo-sweep-img site-header-logo"
+                className="site-header-logo"
                 src="/q-logo.png"
                 alt=""
                 width={64}
                 height={64}
+                priority
+                style={{
+                  width: 68,
+                  height: 68,
+                  opacity: 0.94,
+                  filter:
+                    "brightness(0) saturate(100%) invert(72%) sepia(42%) saturate(1254%) hue-rotate(337deg) brightness(98%) contrast(94%) drop-shadow(0 0 18px rgba(232, 138, 69, 0.24)) drop-shadow(0 12px 26px rgba(0, 0, 0, 0.22))",
+                }}
               />
-            </button>
+            </Link>
             <button
               type="button"
               className={`menu-toggle${menuOpen ? " is-open" : ""}`}

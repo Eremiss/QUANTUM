@@ -16,7 +16,7 @@ export default function SiteFooter({
   x,
   site,
 }: SiteFooterProps) {
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
 
   return (
     <footer className="site-footer-shell">
@@ -25,18 +25,14 @@ export default function SiteFooter({
           <div className="site-footer-brand">
             <p className="site-footer-kicker">Quantum</p>
             <p className="site-footer-title">
-              {lang === "en"
-                ? "Infrastructure, products, and execution systems for real-time markets."
-                : "Infrastructure, products, and execution systems for real-time markets."}
+              {t("home.footer.description")}
             </p>
           </div>
 
           <div className="site-footer-column">
-            <p className="site-footer-label">
-              {lang === "en" ? "Navigate" : "Navigate"}
-            </p>
+            <p className="site-footer-label">{t("home.footer.navigate")}</p>
             <a className="site-footer-link" href="#top">
-              {lang === "en" ? "Home" : "Home"}
+              {t("home.footer.home")}
             </a>
             <Link className="site-footer-link" href="/docs">
               {t("nav.docs")}
@@ -47,9 +43,7 @@ export default function SiteFooter({
           </div>
 
           <div className="site-footer-column">
-            <p className="site-footer-label">
-              {lang === "en" ? "Connect" : "Connect"}
-            </p>
+            <p className="site-footer-label">{t("home.footer.connect")}</p>
             <a
               className="site-footer-link"
               href={telegram}
