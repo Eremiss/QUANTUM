@@ -487,7 +487,7 @@ export default function Home() {
 
               <FadeIn className="proof-quote-card" delay={0.14} variant="slide-left">
                 <div className="proof-figure-label">
-                  {lang === "en" ? "Fig 2.c - field note" : "Fig 2.c - field note"}
+                  {lang === "en" ? "Fig 2.c - field note" : "Fig 2.c - заметка из поля"}
                 </div>
                 <div className="proof-quote-body">
                   <div className="proof-avatar" aria-hidden="true">
@@ -502,7 +502,7 @@ export default function Home() {
                     <p className="proof-quote-meta">
                       {lang === "en"
                         ? "Infrastructure partner, market product team"
-                        : "Infrastructure partner, market product team"}
+                        : "Инфраструктурный партнер, продуктовая команда рынка"}
                     </p>
                   </div>
                 </div>
@@ -530,14 +530,14 @@ export default function Home() {
                         : "Скопировано"
                       : lang === "en"
                         ? "Copy code"
-                        : "Copy code"}
+                        : "Скопировать код"}
                   </button>
                   <button
                     type="button"
                     className="artifact-run-button"
                     onClick={() => setArtifactExecuted(true)}
                   >
-                    {lang === "en" ? "Run fragment" : "Run fragment"}
+                    {lang === "en" ? "Run fragment" : "Запустить фрагмент"}
                   </button>
                 </div>
               </div>
@@ -545,7 +545,7 @@ export default function Home() {
 
             <FadeIn className="artifact-copy" delay={0.08} variant="slide-left">
               <p className="eyebrow">
-                {lang === "en" ? "Execution artifact" : "Execution artifact"}
+                {lang === "en" ? "Execution artifact" : "Execution-артефакт"}
               </p>
               <h2 className="artifact-title">
                 {lang === "en"
@@ -571,10 +571,10 @@ export default function Home() {
                   {artifactExecuted
                     ? lang === "en"
                       ? "Output ready"
-                      : "Output ready"
+                      : "Вывод готов"
                     : lang === "en"
                       ? "Awaiting execution"
-                      : "Awaiting execution"}
+                      : "Ожидает запуска"}
                 </p>
                 <p className="artifact-terminal-slogan">
                   {artifactExecuted
@@ -597,7 +597,7 @@ export default function Home() {
                   className="artifact-close-button"
                   onClick={() => setArtifactExecuted(false)}
                 >
-                  {lang === "en" ? "Close output" : "Закрыть output"}
+                  {lang === "en" ? "Close output" : "Закрыть окно"}
                 </button>
               </div>
             </div>
@@ -653,9 +653,9 @@ export default function Home() {
               <FadeIn className="editorial-column" delay={0.08} variant="soft-scale">
                 <p className="editorial-label">{t("home.trust.engagementsTitle")}</p>
                 <div className="editorial-lines">
-                  {trustEngagements.map((item) => (
+                  {trustEngagements.map((item, index) => (
                     <div key={item} className="editorial-line-item">
-                      <span>01</span>
+                      <span>{(index + 1).toString().padStart(2, "0")}</span>
                       <p>{item}</p>
                     </div>
                   ))}
@@ -881,12 +881,12 @@ export default function Home() {
             <FadeIn className="editorial-intro" variant="slide-right">
               <div>
                 <p className="editorial-kicker">
-                  {lang === "en" ? "Research notes" : "Research notes"}
+                  {lang === "en" ? "Research notes" : "Исследовательские заметки"}
                 </p>
                 <h2 className="editorial-title">
                   {lang === "en"
                     ? "Signals from the markets we build for."
-                    : "Signals from the markets we build for."}
+                    : "Сигналы рынков, для которых мы строим."}
                 </h2>
               </div>
               <Link className="editorial-link" href="/blog">
